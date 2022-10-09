@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chart extends Model
 {
-    return $this->belongsTo('App\Difficulty');
-    return $this->belongsToMany('App\Genre');
+    protected $fillable = [
+        'name',
+        'name_kana',
+        'difficulty_id',
+        
+    ];
+    
+    public function genres(){
+        return $this->belongsToMany('App\Genre');
+    }
+    public function difficulty(){
+        return $this->belongsTo('App\Difficulty');
+    }
+
 }

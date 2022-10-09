@@ -15,3 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/news', 'PostController@news');
+Route::post('/charts', 'ChartController@store');
+Route::get('/charts/register', 'ChartController@create');
+Route::get('/charts/registered/{chart}', 'ChartController@show');

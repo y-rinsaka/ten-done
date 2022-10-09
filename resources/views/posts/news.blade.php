@@ -13,7 +13,7 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <p class='body'>{{$post->created_at->format('Y/m/d')}}　{{ $post->user_id }} さんが {{$post->chart_name}} をドンダフルコンボ！</p>
+                    <p class='body'>{{ $post->created_at->format('Y/m/d') }}　{{ $post->user_id }} さんが {{ $post->chart_name }} をドンダフルコンボ！</p>
                 </div>
             @endforeach
         </div>
