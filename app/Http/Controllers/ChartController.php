@@ -10,7 +10,7 @@ class ChartController extends Controller
 {
     public function create(Difficulty $difficulty, Genre $genre)
     {
-        return view('charts/register')->with(['difficulties' => $difficulty->get(),
+        return view('charts.register')->with(['difficulties' => $difficulty->get(),
                                         'genres' => $genre->get()]);
     }
     public function store(Request $request, Difficulty $difficulty, Chart $chart)
@@ -22,8 +22,11 @@ class ChartController extends Controller
         $chart->genres()->attach($input_genres); 
         return redirect('charts/registered/' . $chart->id);
     }
-    public function show(Chart $chart)
+    public function showRegistered(Chart $chart)
     {
-        return view('charts/registered')->with(['chart' => $chart]);
+        return view('charts.registered')->with(['chart' => $chart]);
+    }
+    public function showUserPage(Chart $chart, Difficulty $difficulty){
+        return view('userpage.userpage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get()]);
     }
 }

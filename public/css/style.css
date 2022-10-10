@@ -1,0 +1,20 @@
+#charts_table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-wrap: break-word;
+    width: 200%;
+}
+#charts_table th, #charts_table td {
+    border: solid 1px;
+}
+#charts_table th {
+    height: 60px;
+    width: 25px;
+    text-align: center;
+    background-color: orange;
+    
+}
+
+#charts_table td {
+    width: 100px;
+}

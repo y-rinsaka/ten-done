@@ -17,4 +17,5 @@ Route::get('/', function () {
 Route::get('/news', 'PostController@news');
 Route::post('/charts', 'ChartController@store');
 Route::get('/charts/register', 'ChartController@create');
-Route::get('/charts/registered/{chart}', 'ChartController@show');
+Route::get('/charts/registered/{chart}', 'ChartController@showRegistered');
+Route::get('/userpage', 'ChartController@showUserPage');
