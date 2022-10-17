@@ -18,7 +18,11 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    public function username()
+    {
+        //  emailの代わりに使用したいカラム名を指定する
+        return 'taiko_id';
+     }
     use AuthenticatesUsers;
 
     /**
