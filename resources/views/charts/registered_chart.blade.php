@@ -7,9 +7,14 @@
     </head>
     <body>
         <h1>登録完了</h1>
-        <h2></h2>
-        <p>{{ $chart->difficulty->difficulty }}</p>
-        
-        <a href="/charts/register">[登録する]</a>
+        <h2>{{ $chart->name }} ({{ $chart->name_kana }})</h2>
+        <p>難易度帯：{{ $chart->difficulty->name }}</p>
+        <p>ジャンル：</p>
+        <ul>
+        @foreach($chart->genres as $genre)   
+            <li>{{ $genre->name }}</li>
+        @endforeach
+        </ul>
+        <a href="/charts/register">[登録ページに戻る]</a>
     </body>
 </html>

@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    return $this->belongsTo('App\User');
+    public function account(){
+        return $this->belongsTo('App\Account');
+    }
+    
     
     protected $dates = ['created_at', 'updated_at',];
     

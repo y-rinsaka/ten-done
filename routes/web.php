@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/', 'AccountController@index');
+    Route::get('/news', 'PostController@news');
+    Route::post('/charts', 'ChartController@store');
+    Route::get('/charts/register_chart', 'ChartController@create');
+    Route::get('/charts/registered_chart/{chart}', 'ChartController@showRegistered');
+    Route::resource('account', 'AccountController')->only(['index', 'edit', 'update']);
+    
 });
-Route::get('/news', 'PostController@news');
-Route::post('/charts', 'ChartController@store');
-Route::get('/charts/register', 'ChartController@create');
-Route::get('/charts/registered/{chart}', 'ChartController@show');
+Auth::routes();
+

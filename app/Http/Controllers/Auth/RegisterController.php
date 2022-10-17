@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+//use App\User;
+use App\Account;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->redirectTo = route('account.index');
     }
 
     /**
@@ -49,13 +51,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        // バリデーションルールとエラーメッセージは、
+        // UserControllerと共用したいので、Userモデルに移動しています。
+        return Validator::make($data, Account::$rules, Account::$messages);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,10 +63,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Account::create([ // UserからAccountに変更
             'name' => $data['name'],
-            'email' => $data['email'],
+            'taiko_id' => $data['taiko_id'],
+            'pref_id' => $data['pref_id'],
+            'rank_id' => $data['rank_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
+    
 }
