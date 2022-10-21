@@ -11,11 +11,11 @@
                 <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{Auth::user()->taiko_id}}">ドンだーひろば</a>
             </div>
             <div>
-                <h2>ニュース</h2>
+                <h2>マイニュース</h2>
                 <ul>
                     @foreach ($posts as $post)
                         @if ($post->user_id === Auth::user()->id)
-                            <li>{{ $post->chart_name}} 全良達成！！({{$post->created_at->format('Y/m/d')}})</li>
+                            <li>{{ $post->chart->name }} 全良達成！！({{$post->created_at->format('Y/m/d')}})</li>
                         @endif
                     @endforeach
                 </ul>
@@ -63,7 +63,7 @@
                                 <form action="/" method="post">
                                     @csrf
                                     <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}">
-                                    <input type="hidden" name="post[chart_name]" value="{{ $chart->name }}">
+                                    <input type="hidden" name="post[chart_id]" value="{{ $chart->id }}">
                                     <input type="submit" class="btn btn-primary" name="register_button" value="登録">
                                 </form>
                                 

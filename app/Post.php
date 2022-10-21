@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     public function account(){
-        return $this->belongsTo('App\Account');
+        return $this->belongsTo(Account::class, 'user_id');
+    }
+    public function chart(){
+        return $this->belongsTo('App\Chart');
     }
     
     protected $fillable = [
-        'user_id', 'chart_name',
+        'user_id', 'chart_id',
     ];
 
     protected $dates = ['created_at', 'updated_at',];
