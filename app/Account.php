@@ -13,8 +13,9 @@ class Account extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Post');
     }
-
-    
+    public function getByAccount(){
+        return $this->posts()->first();
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -53,7 +54,7 @@ class Account extends Authenticatable
         'name.required' => 'お名前を入力してください。',
         'name.max' => 'お名前は10文字以内で入力してください。',
         'taiko_id.required' => '太鼓番を入力してください。',
-        'taiko_id.taiko_id' => '正しい太鼓番を入力してください。',
+        'taiko_id.taiko_id' => '太鼓番を正しく入力してください。',
         'taiko_id.unique' => 'その太鼓番は既に使用されています。',
         'password.required' => 'パスワードを入力してください。',
         'password.min' => 'パスワードは8文字以上で入力してください。',

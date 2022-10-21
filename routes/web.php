@@ -13,7 +13,8 @@
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'AccountController@index');
-    Route::get('/news', 'PostController@news');
+    Route::post('/', 'PostController@store');
+    Route::get('/posts', 'PostController@showPosts');
     Route::post('/charts', 'ChartController@store');
     Route::get('/charts/register_chart', 'ChartController@create');
     Route::get('/charts/registered_chart/{chart}', 'ChartController@showRegistered');

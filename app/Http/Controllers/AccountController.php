@@ -8,12 +8,13 @@ use App\Account;
 use App\Difficulty;
 use App\Chart;
 use App\Genre;
+use App\Post;
 class AccountController extends Controller
 {
-    public function index(Chart $chart, Difficulty $difficulty, Genre $genre)
+    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Post $post)
     {
         return view('account.index')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(),
-                                        'genres' => $genre->get()]);;
+                                        'genres' => $genre->get(), 'posts' => $post->get()]);;
     }
     public function edit($id)
     {
@@ -34,4 +35,5 @@ class AccountController extends Controller
         $account->save();
         return redirect(route('account.index'));
     }
+
 }

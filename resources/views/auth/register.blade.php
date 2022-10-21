@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('新規登録') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('プレイヤー名') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="taiko_id" class="col-md-4 col-form-label text-md-right">{{ __('Taiko ID') }}</label>
+                            <label for="taiko_id" class="col-md-4 col-form-label text-md-right">{{ __('太鼓番') }}</label>
 
                             <div class="col-md-6">
                                 <input id="taiko_id" type="text" class="form-control @error('taiko_id') is-invalid @enderror" name="taiko_id" value="{{ old('taiko_id') }}">
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('再確認') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="pref" class="col-md-4 col-form-label text-md-right">{{ __('Prefectures') }}</label>
+                            <label for="pref" class="col-md-4 col-form-label text-md-right">{{ __('都道府県') }}</label>
 
                             <div class="col-md-6">
                                 <select name="pref_id" id="pref_id" class="form-control @error('pref_id') is-invalid @enderror">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('Ranks') }}</label>
+                            <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('段位') }}</label>
 
                             <div class="col-md-6">
                                 <select name="rank_id" id="rank_id" class="form-control @error('rank_id') is-invalid @enderror">
@@ -100,7 +100,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('登録！') }}
                                 </button>
                             </div>
                         </div>
