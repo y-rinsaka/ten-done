@@ -3,18 +3,21 @@
 @section('content')
         <div class="profile_posts">
             <div>
+                <h2>プロフィール</h2>
                 <table border="1" id="profile_table">
-                    
                     <tr><td rowspan="2"><img src="https://img.taiko-p.jp/imgsrc.php?v=&kind=mydon&fn=mydon_{{Auth::user()->taiko_id}}" class="mydon_image"/></td><th>プレイヤー名</th><td>{{Auth::user()->name}}</td><th>都道府県</th><td>{{App\Account::$prefs[Auth::user()->pref_id]}}</td></tr>
                     <tr><th>太鼓番</th><td>{{Auth::user()->taiko_id}}</td><th>現在の段位</th><td>{{App\Account::$ranks[Auth::user()->rank_id]}}</td></tr>
                 </table>
                 <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{Auth::user()->taiko_id}}">ドンだーひろば</a>
             </div>
             <div>
-                <p>最近のニュース</p>
+                <h2>ニュース</h2>
                 <ul>
-                    <li>全良</li>
-                    
+                    @foreach ($posts as $post)
+                        @if ($post->user_id === Auth::user()->id)
+                            <li>{{ $post->chart_name}} 全良達成！！({{$post->created_at->format('Y/m/d')}})</li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -35,7 +38,7 @@
                 @endforeach
             </table>
                 
-                   <!-- ボタン・リンククリック後に表示される画面の内容 -->
+            <!-- ボタン・リンククリック後に表示される画面の内容 -->
             @foreach ($charts as $chart)
                 <div class="modal fade" id="registerModal{{ $chart->id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
@@ -55,8 +58,15 @@
                                 </label>
                             </div>
                             <div class="modal-footer">
+                                
                                 <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary">登録</button>
+                                <form action="/" method="post">
+                                    @csrf
+                                    <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="post[chart_name]" value="{{ $chart->name }}">
+                                    <input type="submit" class="btn btn-primary" name="register_button" value="登録">
+                                </form>
+                                
                             </div>
                         </div>
                     </div>

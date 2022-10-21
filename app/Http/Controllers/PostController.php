@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\Account;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function news(Post $post)
+    public function store(Request $request, Post $post)
     {
-        return view('posts/news')->with(['posts' => $post->getPaginateByLimit()]);
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
+        return redirect('/');
+    }
+    public function showPosts(Post $post, Account $account){
+         return view('posts.show')->with(['posts' => $post->get(), 'accounts' => $account->get()]);
     }
 }
