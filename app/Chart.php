@@ -19,5 +19,7 @@ class Chart extends Model
     public function difficulty(){
         return $this->belongsTo('App\Difficulty');
     }
-
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
 }
