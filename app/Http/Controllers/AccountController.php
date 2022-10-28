@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AccountRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Account;
 use App\Difficulty;
 use App\Chart;
@@ -13,8 +14,8 @@ class AccountController extends Controller
 {
     public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Post $post)
     {
-        return view('account.index')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(),
-                                        'genres' => $genre->get(), 'posts' => $post->get()]);;
+        $myposts = \App\Post::all()->where('user_id', Auth::user()->id)->pluck('chart_id')->toArray();
+        return view('account.index')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'posts' => $post -> orderBy('created_at', 'desc')->take(5)->get(), 'myposts'=>$myposts]);;
     }
     public function edit($id)
     {
@@ -35,5 +36,5 @@ class AccountController extends Controller
         $account->save();
         return redirect(route('account.index'));
     }
-
+    
 }
