@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\AccountRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +37,20 @@ class AccountController extends Controller
         }
         $account->save();
         return redirect(route('account.index'));
+    }
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $query = Account::query();
+
+        if(!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $accounts = $query->orderBy('created_at','desc')->paginate(5);
+
+        return view('account.search', compact('accounts', 'keyword'));
     }
     
 }

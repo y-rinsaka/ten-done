@@ -15,12 +15,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'AccountController@index');
     Route::post('/', 'PostController@store');
     Route::delete('delete/{chart}', 'PostController@delete')->name('delete');
+    Route::get('/search', 'AccountController@search')->name('account.search');
     Route::get('/posts', 'PostController@showPosts');
     //Route::get('/account/{account}', 'AccountController@showAccountPage');
     Route::post('/charts', 'ChartController@store');
     Route::get('/charts/register_chart', 'ChartController@create');
     Route::get('/charts/registered_chart/{chart}', 'ChartController@showRegistered');
-    Route::resource('account', 'AccountController')->only(['index', 'edit', 'update']);
+    Route::resource('account', 'AccountController')->only(['index', 'edit', 'update', 'search']);
     
 });
 Auth::routes();

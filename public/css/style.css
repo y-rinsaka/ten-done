@@ -43,7 +43,14 @@
 .content_charts {
     padding: 10px;
 }
+.content_search {
+    padding: 30px 100px;
+}
 .mydon_image {
     width: 140px;
 	height: 140px;	
+}
+.mydon_image_at_search {
+    width: 70px;
+	height: 70px;	
 }
