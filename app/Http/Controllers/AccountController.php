@@ -14,10 +14,11 @@ use App\Genre;
 use App\Post;
 class AccountController extends Controller
 {
-    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Post $post)
+    public function index(Chart $chart, Difficulty $difficulty, Genre $genre)
     {
         $myposts = \App\Post::all()->where('user_id', Auth::user()->id)->pluck('chart_id')->toArray();
-        return view('account.index')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'posts' => $post -> orderBy('created_at', 'desc')->take(5)->get(), 'myposts'=>$myposts]);;
+        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(5)->get();
+        return view('account.index')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'news' => $news, 'myposts'=>$myposts]);;
     }
     public function edit($id)
     {
@@ -52,10 +53,10 @@ class AccountController extends Controller
 
         return view('account.search', compact('accounts', 'keyword'));
     }
-    public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Post $post){
+    public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre){
         $account = Account::find($id);
         $account_posts = \App\Post::all()->where('user_id', $id)->pluck('chart_id')->toArray();
-
-        return view('account.showAccountPage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'posts' => $post -> orderBy('created_at', 'desc')->take(5)->get(), 'account_posts'=>$account_posts, 'account'=>$account]);
+        $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(5)->get();
+        return view('account.showAccountPage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'news' =>$news, 'account_posts'=>$account_posts, 'account'=>$account]);
     }
 }
