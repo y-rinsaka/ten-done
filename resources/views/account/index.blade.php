@@ -18,11 +18,14 @@
         <div>
             <h2>マイニュース</h2>
             <ul>
-                @foreach ($posts as $post)
-                    @if ($post->user_id === Auth::user()->id)
+                @if (count($news) == 0)
+                    <br/>
+                    <h3>ニュースはありません</h3>
+                @else
+                    @foreach ($news as $post)
                         <li>{{ $post->chart->name }} ドンダフルコンボ！({{$post->created_at->format('Y/m/d')}})</li>
-                    @endif
-                @endforeach
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
