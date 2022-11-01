@@ -16,7 +16,7 @@ class PostController extends Controller
         return redirect('/');
     }
     public function showPosts(Post $post, Account $account, Chart $chart){
-         return view('posts.show')->with(['posts' => $post->get(), 'accounts' => $account->get(), 'charts' => $chart->get()]);
+         return view('posts.show')->with(['posts' => $post->orderBy('created_at', 'desc')->paginate(10), 'accounts' => $account->get(), 'charts' => $chart->get()]);
     }
     public function delete(Chart $chart, Account $account)
     {

@@ -16,7 +16,7 @@
             <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{Auth::user()->taiko_id}}">ドンだーひろば</a>
         </div>
         <div>
-            <h2>マイニュース(最新5件)</h2>
+            <h2>マイニュース</h2>
             <ul>
                 @foreach ($posts as $post)
                     @if ($post->user_id === Auth::user()->id)
