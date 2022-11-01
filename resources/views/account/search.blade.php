@@ -23,7 +23,7 @@
         @forelse ($accounts as $account)
             <tr>
                 <td><img src="https://img.taiko-p.jp/imgsrc.php?v=&kind=mydon&fn=mydon_{{ $account->taiko_id }}" class="mydon_image_at_search" /></td>
-                <td>{{ $account->name }}</td>
+                <td><a href="/account/{{ $account->id }}">{{ $account->name }}</a></td>
                 <td>{{ App\Account::$ranks[$account->rank_id] }}</td>
                 <td>{{ App\Account::$prefs[$account->pref_id] }}</td>
             </tr>

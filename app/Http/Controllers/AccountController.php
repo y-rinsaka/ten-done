@@ -52,5 +52,10 @@ class AccountController extends Controller
 
         return view('account.search', compact('accounts', 'keyword'));
     }
-    
+    public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Post $post){
+        $account = Account::find($id);
+        $account_posts = \App\Post::all()->where('user_id', $id)->pluck('chart_id')->toArray();
+
+        return view('account.showAccountPage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'posts' => $post -> orderBy('created_at', 'desc')->take(5)->get(), 'account_posts'=>$account_posts, 'account'=>$account]);
+    }
 }
