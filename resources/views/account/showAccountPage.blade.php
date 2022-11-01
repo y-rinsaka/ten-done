@@ -13,15 +13,11 @@
         <div>
             <h2>マイニュース</h2>
             <ul>
-                @if (!empty($posts))
-                    @foreach ($posts as $post)
-                        @if ($post->user_id === $account->id)
-                            <li>{{ $post->chart->name }} ドンダフルコンボ！({{$post->created_at->format('Y/m/d')}})</li>
-                        @endif
-                    @endforeach
-                @else
-                    <p>ニュースがありません</p>
-                @endif
+                @foreach ($posts as $post)
+                    @if ($post->user_id === $account->id)
+                        <li>{{ $post->chart->name }} ドンダフルコンボ！({{$post->created_at->format('Y/m/d')}})</li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </div>
