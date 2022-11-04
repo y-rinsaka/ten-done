@@ -12,6 +12,10 @@ class Post extends Model
     public function chart(){
         return $this->belongsTo('App\Chart');
     }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
     
     protected $fillable = [
         'user_id', 'chart_id',
@@ -19,10 +23,4 @@ class Post extends Model
 
     protected $dates = ['created_at', 'updated_at',];
     
-    public function getPaginateByLimit(int $limit_count = 10)
-    {
-        // updated_atで降順に並べたあと、limitで件数制限をかける
-        return $this::with('account')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-        
-    }
 }
