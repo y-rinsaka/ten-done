@@ -3,15 +3,35 @@
 @if(!empty($account))
     <div class="profile_posts">
         <div>
-            <h2>プロフィール</h2>
+            <div>
+                @if (auth()->user()->isFollowing($account->id))
+                    <form action="{{ route('unfollow', $account->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                    </form>
+                @else
+                    <form action="{{ route('follow', $account->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">フォローする</button>
+                    </form>
+                @endif
+            </div>
+            @if (auth()->user()->isFollowed($account->id))
+                <div class="px-2">
+                    <span class="px-1 bg-secondary text-light">フォローされています</span>
+                </div>
+            @endif
             <table border="1" id="profile_table">
                 <tr><td rowspan="2"><img src="https://img.taiko-p.jp/imgsrc.php?v=&kind=mydon&fn=mydon_{{$account->taiko_id}}" class="mydon_image"/></td><th>プレイヤー名</th><td>{{$account->name}}</td><th>都道府県</th><td>{{App\Account::$prefs[$account->pref_id]}}</td></tr>
                 <tr><th>太鼓番</th><td>{{$account->taiko_id}}</td><th>現在の段位</th><td>{{App\Account::$ranks[$account->rank_id]}}</td></tr>
             </table>
             <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{$account->taiko_id}}">ドンだーひろば</a>
+
+
         </div>
         <div>
-            <h2>マイニュース</h2>
+            <h2>ニュース</h2>
             <ul>
                 @if (count($news) == 0)
                     <br/>
