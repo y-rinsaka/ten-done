@@ -8,7 +8,7 @@
                     <form action="{{ route('unfollow', $account->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                        <button type="submit" class="btn btn-outline-primary">フォロー中</button>
                     </form>
                 @else
                     <form action="{{ route('follow', $account->id) }}" method="POST">
@@ -38,7 +38,27 @@
                     <h3>ニュースはありません</h3>
                 @else
                     @foreach ($news as $post)
-                        <li>{{ $post->chart->name }} ドンダフルコンボ！({{$post->created_at->format('Y/m/d')}})</li>
+                        <li>
+                            {{ $post->chart->name }} ドンダフルコンボ！({{$post->created_at->format('Y/m/d')}})
+                            <div class="d-flex align-items-center">
+                                @if (!in_array(Auth::user()->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
+                                    <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                                        @csrf
+                
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                                    </form>
+                                @else
+                                    <form method="POST"action="{{ url('favorites/' .array_column($post->favorites->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+                
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                                    </form>
+                                @endif
+                                <p class="mb-0 text-secondary">{{ count($post->favorites) }}</p>
+                            </div>
+                        </li>
                     @endforeach
                 @endif
             </ul>

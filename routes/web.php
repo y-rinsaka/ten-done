@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('account', 'AccountController')->only(['index', 'edit', 'update', 'search', 'showAccountPage']);
     Route::post('account/{account}/follow', 'AccountController@follow')->name('follow');
     Route::delete('account/{account}/unfollow', 'AccountController@unfollow')->name('unfollow');
-    
+    Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 });
 Auth::routes();
 

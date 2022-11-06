@@ -53,4 +53,11 @@
 .mydon_image_at_search {
     width: 70px;
 	height: 70px;	
+	border-radius:50%;
+}
+
+.mydon_image_at_dropdown {
+    width: 40px;
+	height: 40px;	
+	border-radius:50%;
 }
