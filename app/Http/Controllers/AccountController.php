@@ -59,4 +59,27 @@ class AccountController extends Controller
         $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(5)->get();
         return view('account.showAccountPage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get(), 'genres' => $genre->get(), 'news' =>$news, 'account_posts'=>$account_posts, 'account'=>$account]);
     }
+    public function follow(Account $account)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($account->id);
+        if(!$is_following) {
+            // フォローしていなければフォローする
+            $follower->follow($account->id);
+            return back();
+        }
+    }
+    
+    public function unfollow(Account $account)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($account->id);
+        if($is_following) {
+            // フォローしていればフォローを解除する
+            $follower->unfollow($account->id);
+            return back();
+        }
+    }
 }
