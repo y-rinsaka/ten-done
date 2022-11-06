@@ -18,10 +18,7 @@ class PostController extends Controller
     }
     public function showPosts(Chart $chart, Follower $follower){
         
-        $posts = \App\Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->paginate(10);;
-
-        //$following = \App\Follower::where('followed_id', Auth::user())->get();
-        //$following_posts = \App\Post::where('user_id', $following->following_id)->where('chart_id', $chart->id)->orderBy('created_at', 'desc')
+        $posts = \App\Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->paginate(10);
         return view('posts.show', compact('posts'));
     }
     public function delete(Chart $chart, Account $account)

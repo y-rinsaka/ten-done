@@ -40,7 +40,7 @@
                         <form action="{{ route('unfollow', $account->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">フォロー解除</button>
+                            <button type="submit" class="btn btn-outline-primary">フォロー中</button>
                         </form>
                     @else
                         <form action="{{ route('follow', $account->id) }}" method="POST">
