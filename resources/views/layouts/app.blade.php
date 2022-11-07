@@ -66,6 +66,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 
                                 <a href="/posts" class="dropdown-item">{{ __('タイムライン') }}</a>
+                                <a href="/follow_follower" class="dropdown-item">{{ __('フォロー中/フォロワー') }}</a>
                                 <a href="/search" class="dropdown-item">{{ __('ユーザ検索') }}</a>
                                 <a href="{{ route('account.edit', Auth::user()) }}" class="dropdown-item">{{ __('プロフィール設定') }}</a>
                                 

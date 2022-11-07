@@ -3,32 +3,43 @@
 @if(!empty($account))
     <div class="profile_posts">
         <div>
-            <div>
-                @if (auth()->user()->isFollowing($account->id))
-                    <form action="{{ route('unfollow', $account->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-primary">フォロー中</button>
-                    </form>
-                @else
-                    <form action="{{ route('follow', $account->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">フォローする</button>
-                    </form>
-                @endif
-            </div>
-            @if (auth()->user()->isFollowed($account->id))
-                <div class="px-2">
-                    <span class="px-1 bg-secondary text-light">フォローされています</span>
-                </div>
-            @endif
             <table border="1" id="profile_table">
                 <tr><td rowspan="2"><img src="https://img.taiko-p.jp/imgsrc.php?v=&kind=mydon&fn=mydon_{{$account->taiko_id}}" class="mydon_image"/></td><th>プレイヤー名</th><td>{{$account->name}}</td><th>都道府県</th><td>{{App\Account::$prefs[$account->pref_id]}}</td></tr>
                 <tr><th>太鼓番</th><td>{{$account->taiko_id}}</td><th>現在の段位</th><td>{{App\Account::$ranks[$account->rank_id]}}</td></tr>
             </table>
             <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{$account->taiko_id}}">ドンだーひろば</a>
-
-
+            <div class="d-flex justify-content-start">
+                <div class="p-2 d-flex flex-column align-items-center">
+                    <p class="font-weight-bold">フォロー数</p>
+                    <span>{{ $follow_count }}</span>
+                </div>
+                <div class="p-2 d-flex flex-column align-items-center">
+                    <p class="font-weight-bold">フォロワー数</p>
+                    <span>{{ $follower_count }}</span>
+                </div>
+            </div>
+                @if ($account->id === Auth::user()->id)
+                    <a href="{{ url('account/' .$account->id .'/edit') }}" class="btn btn-primary">プロフィールを編集</a>
+                    <a href="/" class="btn btn-primary">マイページに戻る</a>
+                @else
+                    @if ($is_following)
+                        <form action="{{ route('unfollow', $account->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-primary">フォロー中</button>
+                        </form>
+                    @else
+                        <form action="{{ route('follow', $account->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">フォローする</button>
+                        </form>
+                    @endif
+                    @if ($is_followed)
+                        <div class="px-2">
+                            <span class="px-1 bg-secondary text-light">フォローされています</span>
+                        </div>
+                    @endif
+                @endif
         </div>
         <div>
             <h2>ニュース</h2>
@@ -67,7 +78,6 @@
     <div class="content_charts">
         <hr/>
         <h1 class=>☆10全良難易度表</h1>
-        
         <table id="charts_table">
             @foreach ($difficulties as $difficulty)
                 <tr>

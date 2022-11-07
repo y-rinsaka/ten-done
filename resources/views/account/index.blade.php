@@ -13,6 +13,17 @@
                 <tr><th>太鼓番</th><td>{{Auth::user()->taiko_id}}</td><th>現在の段位</th><td>{{App\Account::$ranks[Auth::user()->rank_id]}}</td></tr>
             </table>
             <a href="https://donderhiroba.jp/user_profile.php?taiko_no={{Auth::user()->taiko_id}}">ドンだーひろば</a>
+            <div class="d-flex justify-content-start">
+                <div class="p-2 d-flex flex-column align-items-center">
+                    <p class="font-weight-bold">フォロー数</p>
+                    <a href="/follow_follower">{{ $follow_count }}</a>
+                </div>
+                <div class="p-2 d-flex flex-column align-items-center">
+                    <p class="font-weight-bold">フォロワー数</p>
+                    <a href="/follow_follower">{{ $follower_count }}</a>
+                </div>
+            </div>
+            <a href="{{ url('account/' .$account->id .'/edit') }}" class="btn btn-primary">プロフィールを編集</a>
         </div>
         <div>
             <h2>ニュース</h2>

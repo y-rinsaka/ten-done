@@ -36,17 +36,21 @@
                 <td>{{ App\Account::$ranks[$account->rank_id] }}</td>
                 <td>{{ App\Account::$prefs[$account->pref_id] }}</td>
                 <td>
-                    @if (auth()->user()->isFollowing($account->id))
-                        <form action="{{ route('unfollow', $account->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-primary">フォロー中</button>
-                        </form>
+                    @if ($account->id === Auth::user()->id)
+                    
                     @else
-                        <form action="{{ route('follow', $account->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">フォローする</button>
-                        </form>
+                        @if (auth()->user()->isFollowing($account->id))
+                            <form action="{{ route('unfollow', $account->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-primary">フォロー中</button>
+                            </form>
+                        @else
+                            <form action="{{ route('follow', $account->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">フォローする</button>
+                            </form>
+                        @endif
                     @endif
                 </td>
             </tr>
