@@ -7,7 +7,7 @@
     @foreach ($posts as $post)
     
         <li class='post'>
-            {{ $post->created_at->format('Y/m/d') }}　{{ $post->account->name }} さんが <b>{{ $post->chart->name }}</b> をドンダフルコンボ！
+            {{ $post->created_at->format('Y/m/d') }}　<a href="/account/{{$post->account->id}}">{{ $post->account->name }}</a> さんが <b>{{ $post->chart->name }}</b> をドンダフルコンボ！
 
             <div class="d-flex align-items-center">
                 @if (!in_array(Auth::user()->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))

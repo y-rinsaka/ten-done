@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/search', 'AccountController@search')->name('account.search');
     Route::get('/account/{account}', 'AccountController@showAccountPage')->name('account.showAccountPage');
     Route::get('/posts', 'PostController@showPosts');
+    Route::get('/follow_follower', 'AccountController@showFollowAndFollower');
     Route::post('/charts', 'ChartController@store');
     Route::get('/charts/register_chart', 'ChartController@create');
     Route::get('/charts/registered_chart/{chart}', 'ChartController@showRegistered');
@@ -25,6 +26,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('account/{account}/follow', 'AccountController@follow')->name('follow');
     Route::delete('account/{account}/unfollow', 'AccountController@unfollow')->name('unfollow');
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+    
 });
 Auth::routes();
 
