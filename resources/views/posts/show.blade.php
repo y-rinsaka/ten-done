@@ -5,7 +5,6 @@
 <div class='posts'>
 <ul>
     @foreach ($posts as $post)
-    
         <li class='post'>
             {{ $post->created_at->format('Y/m/d') }}　<a href="/account/{{$post->account->id}}">{{ $post->account->name }}</a> さんが <b>{{ $post->chart->name }}</b> をドンダフルコンボ！
 

@@ -15,7 +15,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'AccountController@index');
     Route::post('/', 'PostController@store');
     Route::delete('delete/{chart}', 'PostController@delete')->name('delete');
-    Route::get('/search', 'AccountController@search')->name('account.search');
+    Route::get('searchInput', 'AccountController@searchInput')->name('account.searchInput');
+    Route::get('search', 'AccountController@search')->name('account.search');
     Route::get('/account/{account}', 'AccountController@showAccountPage')->name('account.showAccountPage');
     Route::get('/posts', 'PostController@showPosts');
     Route::get('/follow_follower', 'AccountController@showFollowAndFollower');
