@@ -51,9 +51,14 @@
 	height: 140px;	
 }
 .mydon_image_at_search {
+    width: 140px;
+	height: 140px;	
+	border-radius:50%;
+}
+.mydon_image_at_ff {
     width: 70px;
 	height: 70px;	
-	border-radius:50%;
+	border-radius:50%;	
 }
 
 .mydon_image_at_dropdown {
