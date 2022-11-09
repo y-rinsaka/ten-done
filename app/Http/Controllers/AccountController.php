@@ -21,7 +21,7 @@ class AccountController extends Controller
         
         $account = Auth::user();
         $myposts = \App\Post::all()->where('user_id', Auth::user()->id)->pluck('chart_id')->toArray();
-        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(5)->get();
+        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(3)->get();
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($account->id);
         $is_followed = $login_user->isFollowed($account->id);
