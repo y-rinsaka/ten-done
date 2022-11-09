@@ -62,7 +62,7 @@ class AccountSeeder extends Seeder
             'password' => Hash::make('335854019439')
             ]);        
         \App\Account::create([
-            'name' => 'らーあわ',
+            'name'  => 'らーあわ',
             'taiko_id' => '274788522508',
             'taiko_id_verified_at' => null,
             'pref_id' => 13,
@@ -78,5 +78,6 @@ class AccountSeeder extends Seeder
             'rank_id' => 2,
             'password' => Hash::make('762579702864')
             ]);    
+        
     }
 }
