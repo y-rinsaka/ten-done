@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Difficulty extends Model
 {
+    public $timestamps = false;
     public function charts(){
         return $this->hasMany('App\Chart'); 
     }
