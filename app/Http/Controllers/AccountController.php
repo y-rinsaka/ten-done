@@ -15,7 +15,7 @@ use App\Post;
 use App\Follower;
 class AccountController extends Controller
 {
-    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower)
+    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower Post $post)
     {
 
         
@@ -27,6 +27,8 @@ class AccountController extends Controller
         $is_followed = $login_user->isFollowed($account->id);
         $follow_count = $follower->getFollowCount($account->id);
         $follower_count = $follower->getFollowerCount($account->id);
+        $achieved_count = $post->getAchievedCount($account->id);
+        $chart_count = $chart->count();
         return view('account.index')->with(['charts' => $chart->get(),
                                             'difficulties' => $difficulty->get(),
                                             'genres' => $genre->get(),
@@ -36,7 +38,9 @@ class AccountController extends Controller
                                             'is_followed'    => $is_followed,
                                             'myposts' => $myposts,
                                             'follow_count' => $follow_count,
-                                            'follower_count' => $follower_count
+                                            'follower_count' => $follower_count,
+                                            'achieved_count' => $achieved_count,
+                                            'chart_count' => $chart_count
                                             ]);;
     }
     public function edit($id)
