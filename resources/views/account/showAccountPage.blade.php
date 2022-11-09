@@ -84,10 +84,10 @@
         <table id="charts_table">
             @foreach ($difficulties as $difficulty)
                 <tr>
-                    <th>{{ $difficulty->name }}</th>
+                    <th>{{ $difficulty->difficulty }}</th>
                 @foreach ($charts as $chart)
                     
-                    @if ($chart->difficulty->name === $difficulty->name)
+                    @if ($chart->difficulty->difficulty === $difficulty->difficulty)
                         @if (in_array($chart->id, $account_posts))
                             <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
                         @else

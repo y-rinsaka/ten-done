@@ -68,10 +68,10 @@
         <table id="charts_table">
             @foreach ($difficulties as $difficulty)
                 <tr>
-                    <th>{{ $difficulty->name }}</th>
+                    <th>{{ $difficulty->difficulty }}</th>
                 @foreach ($charts as $chart)
                     
-                    @if ($chart->difficulty->name === $difficulty->name)
+                    @if ($chart->difficulty->difficulty === $difficulty->difficulty)
                         @if (in_array($chart->id, $myposts))
                             <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
                         @else
@@ -95,7 +95,7 @@
                             </div>
                             <div class="modal-body">
                                 <label>        
-                                    <p>難易度帯：{{ $chart->difficulty->name }}</p>
+                                    <p>難易度帯：{{ $chart->difficulty->difficulty }}</p>
                             
                                     @foreach($chart->genres as $genre)
                                         <p>●{{ $genre->name }}</p> 
@@ -124,7 +124,7 @@
                             </div>
                             <div class="modal-body">
                                 <label>        
-                                    <p>難易度帯：{{ $chart->difficulty->name }}</p>
+                                    <p>難易度帯：{{ $chart->difficulty->difficulty }}</p>
                             
                                     @foreach($chart->genres as $genre)
                                         <p>●{{ $genre->name }}</p> 

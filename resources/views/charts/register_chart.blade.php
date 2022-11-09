@@ -23,7 +23,7 @@
                 <h2>難易度</h2>
                 <select name="chart[difficulty_id]">
                     @foreach($difficulties as $difficulty)
-                        <option value="{{ $difficulty->id }}">{{ $difficulty->name }}</option>
+                        <option value="{{ $difficulty->id }}">{{ $difficulty->difficulty }}</option>
                     @endforeach
                 </select>
             </div>
