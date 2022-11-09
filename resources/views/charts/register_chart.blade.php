@@ -44,6 +44,12 @@
             </div>
             <input type="submit" value="保存"/>
         </form>
-        
+        <hr />
+        <br />
+        <form action="{{ route('deleteChart') }}" method="post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" class="btn btn-danger" name="delete_button" value="最新一件削除">
+        </form>
     </body>
 </html>

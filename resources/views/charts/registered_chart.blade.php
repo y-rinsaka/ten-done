@@ -15,6 +15,6 @@
             <li>{{ $genre->name }}</li>
         @endforeach
         </ul>
-        <a href="/charts/register">[登録ページに戻る]</a>
+        <a href="/charts/register_chart">[登録ページに戻る]</a>
     </body>
 </html>

@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/charts', 'ChartController@store');
     Route::get('/charts/register_chart', 'ChartController@create');
     Route::get('/charts/registered_chart/{chart}', 'ChartController@showRegistered');
+    Route::delete('/charts/deleted_chart', 'ChartController@deleteChart')->name('deleteChart');
     Route::resource('account', 'AccountController')->only(['index', 'edit', 'update', 'search', 'showAccountPage']);
     Route::post('account/{account}/follow', 'AccountController@follow')->name('follow');
     Route::delete('account/{account}/unfollow', 'AccountController@unfollow')->name('unfollow');
