@@ -31,4 +31,9 @@ class ChartController extends Controller
     public function showUserPage(Chart $chart, Difficulty $difficulty){
         return view('userpage.userpage')->with(['charts' => $chart->get(), 'difficulties' => $difficulty->get()]);
     }
+    public function deleteChart(){
+        
+        $chart = \App\Chart::orderBy('created_at', 'desc')->first()->delete();
+        return redirect('/');
+    }
 }
