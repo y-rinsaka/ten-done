@@ -156,7 +156,7 @@ class AccountController extends Controller
         return view('account.search', $data);
     }
 
-    public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower){
+    public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower, Post $post){
         $account = Account::find($id);
         $account_posts = \App\Post::all()->where('user_id', $id)->pluck('chart_id')->toArray();
         $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(3)->get();
@@ -165,6 +165,9 @@ class AccountController extends Controller
         $is_followed = $login_user->isFollowed($account->id);
         $follow_count = $follower->getFollowCount($account->id);
         $follower_count = $follower->getFollowerCount($account->id);
+        $achieved_count = $post->getAchievedCount($account->id);
+        $chart_count = $chart->count();
+        
         return view('account.showAccountPage')
                 ->with(['charts' => $chart->get(),
                         'difficulties' => $difficulty->get(),
@@ -175,7 +178,9 @@ class AccountController extends Controller
                         'is_following'   => $is_following,
                         'is_followed'    => $is_followed,
                         'follow_count'   => $follow_count,
-                        'follower_count' => $follower_count
+                        'follower_count' => $follower_count,
+                        'achieved_count' => $achieved_count,
+                        'chart_count' => $chart_count
                         ]);
     }
     public function follow(Account $account)

@@ -16,7 +16,9 @@ class Post extends Model
     {
         return $this->hasMany(Favorite::class);
     }
-    
+    public function getAchievedCount($user_id) {
+        return $this->where('user_id', $user_id)->count();
+    }
     protected $fillable = [
         'user_id', 'chart_id',
     ];

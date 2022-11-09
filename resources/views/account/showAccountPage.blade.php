@@ -42,6 +42,9 @@
                 @endif
         </div>
         <div>
+            <div class="achievement">
+                <p class="achieved_acount">{{ $achieved_count }} / {{ $chart_count }}</p>
+            </div>
             <h2>ニュース</h2>
             <ul>
                 @if (count($news) == 0)
