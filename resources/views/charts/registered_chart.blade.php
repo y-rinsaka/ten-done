@@ -8,7 +8,7 @@
     <body>
         <h1>登録完了</h1>
         <h2>{{ $chart->name }} ({{ $chart->name_kana }})</h2>
-        <p>難易度帯：{{ $chart->difficulty->name }}</p>
+        <p>難易度帯：{{ $chart->difficulty->difficulty }}</p>
         <p>ジャンル：</p>
         <ul>
         @foreach($chart->genres as $genre)   
