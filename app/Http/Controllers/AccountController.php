@@ -159,7 +159,7 @@ class AccountController extends Controller
     public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower){
         $account = Account::find($id);
         $account_posts = \App\Post::all()->where('user_id', $id)->pluck('chart_id')->toArray();
-        $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(5)->get();
+        $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(3)->get();
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($account->id);
         $is_followed = $login_user->isFollowed($account->id);
