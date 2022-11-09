@@ -15,7 +15,7 @@ use App\Post;
 use App\Follower;
 class AccountController extends Controller
 {
-    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower Post $post)
+    public function index(Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower, Post $post)
     {
 
         
