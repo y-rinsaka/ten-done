@@ -67,19 +67,126 @@
         
         <table id="charts_table">
             @foreach ($difficulties as $difficulty)
-                <tr>
-                    <th>{{ $difficulty->difficulty }}</th>
-                @foreach ($charts as $chart)
-                    
-                    @if ($chart->difficulty->difficulty === $difficulty->difficulty)
-                        @if (in_array($chart->id, $myposts))
-                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
-                        @else
-                            <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
-                        @endif
-                    @endif
-                @endforeach
-                </tr>
+                @if (count($charts->where('difficulty', $difficulty)) < 10)
+                        <tr>
+                            <th class="rs1">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 19)
+                        <tr>
+                            <th class="rs2" rowspan="2">{{ $difficulty->difficulty }}</th>
+                            
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                        @if (in_array($chart->id, $myposts))
+                                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                        @else
+                                            <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                        @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 )
+                                        @if (in_array($chart->id, $myposts))
+                                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                        @else
+                                            <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                        @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 28)
+                        <tr>        
+                            <th class="rs3" rowspan="3">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 && $loop->index <= 17)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 17)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 37)
+                        <tr>        
+                            <th class="rs4" rowspan="4">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 && $loop->index <= 17)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 17 && $loop->index <= 26)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 26)
+                                    @if (in_array($chart->id, $myposts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}"><a href=class="btn btn-primary" data-toggle="modal" data-target="#registerModal{{ $chart->id }}">{{ $chart->name }}</a></td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                
+                @endif
             @endforeach
         </table>
             
