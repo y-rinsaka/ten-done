@@ -82,7 +82,7 @@ class Account extends Authenticatable
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         'pref_id' => ['required'],
         'rank_id' => ['required'],
-        'email' => ['required', 'string', 'email:rfc', 'max:255']
+        'email' => ['required', 'string', 'email:rfc', 'max:255', 'unique:accounts']
     ];
     public static $messages = [
         'name.required' => 'お名前を入力してください。',

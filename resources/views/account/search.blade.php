@@ -3,41 +3,9 @@
 <div class="text-center mt-4">
         <h2>検索結果</h2>
         <p>検索ワード：{{$search_keyword}}</p>
+        <span class="ml-4">都道府県：{{ $prefs[$search_pref] }}</span>
+        <span class="ml-4">現在の段位：{{ $ranks[$search_rank] }}</span>
 
-        
-        @if(isset($search_pref) && $search_pref != 0)
-            @foreach($prefs as $key => $pref)
-                @foreach($accounts as $account)
-                    @if($key == $account->pref_id)
-                        <span class="ml-4">都道府県：{{ $pref }}</span>
-                        @php
-                            break;
-                        @endphp
-                    @endif
-                @endforeach
-            @endforeach
-        @else
-            @if ($search_pref == 0)
-            <span class="ml-4">都道府県：指定なし</span>
-            @endif
-        @endif
-
-        @if(isset($search_rank) && $search_rank != 0)
-            @foreach($ranks as $key => $rank)
-                @foreach($accounts as $account)
-                    @if($key == $account->rank_id)    
-                        <span class="ml-4">現在の段位：{{ $rank }}</span>
-                        @php
-                            break;
-                        @endphp
-                    @endif 
-                @endforeach
-            @endforeach
-        @else
-            @if ($search_pref == 0)
-            <span class="ml-4">現在の段位：指定なし</span>
-            @endif
-        @endif
 <br />
 <div class= "row d-inline-flex center">
         @foreach($accounts as $account)

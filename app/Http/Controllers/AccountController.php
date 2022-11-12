@@ -149,7 +149,6 @@ class AccountController extends Controller
             "search_rank" => $search_rank,
             "search_keyword" => $search_keyword,
             "accounts" => $accounts,
-            "search_keyword" => $search_keyword,
             "ranks" => $ranks,
             "prefs" => $prefs,
             "old_pref" => $old_pref,
