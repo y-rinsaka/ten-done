@@ -55,7 +55,7 @@ class Account extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'taiko_id', 'password', 'pref_id', 'rank_id',
+        'name', 'taiko_id', 'password', 'pref_id', 'rank_id', 'email',
     ];
 
     /**
@@ -78,10 +78,11 @@ class Account extends Authenticatable
     
     public static $rules = [
         'name' => ['required', 'string', 'max:10'],
-        'taiko_id' => ['required', 'regex:/^[0-9]{12}$/'],
+        'taiko_id' => ['required', 'regex:/^[0-9]{12}$/', 'unique:accounts'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         'pref_id' => ['required'],
         'rank_id' => ['required'],
+        'email' => ['required', 'string', 'email:rfc', 'max:255']
     ];
     public static $messages = [
         'name.required' => 'お名前を入力してください。',
@@ -94,6 +95,7 @@ class Account extends Authenticatable
         'password.confirmed' => '入力されたパスワードが一致しません。',
         'pref_id.required' => '都道府県を選択してください。',
         'rank_id.required' => '段位を選択してください。',
+        
     ];
     
     public static $prefs = [
