@@ -12,7 +12,6 @@ class AccountSeeder extends Seeder
     public function run()
     {
         \App\Account::create([
-            'id' => 1;
             'name' => 'わだどん',
             'taiko_id' => '511025692968',
             'taiko_id_verified_at' => null,
@@ -20,7 +19,6 @@ class AccountSeeder extends Seeder
             'rank_id' => 2,
             'password' => Hash::make('511025692968'),
             'email' => 'test1@example.com'
-
             ]);
         \App\Account::create([
             'name' => 'かっちゃん',
@@ -39,7 +37,6 @@ class AccountSeeder extends Seeder
             'rank_id' => 4,
             'password' => Hash::make('616965172364'),
             'email' => 'test3@example.com'
-
             ]);
         \App\Account::create([
             'name' => 'て',
@@ -76,7 +73,6 @@ class AccountSeeder extends Seeder
             'rank_id' => 4,
             'password' => Hash::make('274788522508'),
             'email' => 'test7@example.com'
-
             ]);
         \App\Account::create([
             'name' => 'しんりゅう',
