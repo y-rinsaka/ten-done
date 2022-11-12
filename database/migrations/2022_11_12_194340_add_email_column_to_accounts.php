@@ -14,7 +14,7 @@ class AddEmailColumnToAccounts extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->unique(['taiko_id', 'email']);
+            $table->string('email');
         });
     }
 
