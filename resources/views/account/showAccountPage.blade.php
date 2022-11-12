@@ -83,19 +83,126 @@
         <h1 class=>☆10全良難易度表</h1>
         <table id="charts_table">
             @foreach ($difficulties as $difficulty)
-                <tr>
-                    <th>{{ $difficulty->difficulty }}</th>
-                @foreach ($charts as $chart)
-                    
-                    @if ($chart->difficulty->difficulty === $difficulty->difficulty)
-                        @if (in_array($chart->id, $account_posts))
-                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
-                        @else
-                            <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
-                        @endif
-                    @endif
-                @endforeach
-                </tr>
+                @if (count($charts->where('difficulty', $difficulty)) < 10)
+                        <tr>
+                            <th class="rs1">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 19)
+                        <tr>
+                            <th class="rs2" rowspan="2">{{ $difficulty->difficulty }}</th>
+                            
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                        @if (in_array($chart->id, $account_posts))
+                                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                        @else
+                                            <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                        @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 )
+                                        @if (in_array($chart->id, $account_posts))
+                                            <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                        @else
+                                            <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                        @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 28)
+                        <tr>        
+                            <th class="rs3" rowspan="3">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 && $loop->index <= 17)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 17)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                @elseif (count($charts->where('difficulty', $difficulty)) < 37)
+                        <tr>        
+                            <th class="rs4" rowspan="4">{{ $difficulty->difficulty }}</th>
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index <= 8)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 8 && $loop->index <= 17)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 17 && $loop->index <= 26)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                        <tr>        
+                            @foreach ($charts->where('difficulty', $difficulty) as $chart)
+                                @if ($loop->index > 26)
+                                    @if (in_array($chart->id, $account_posts))
+                                        <td class="chart_{{ $chart->id }}" bgcolor="#ffd700">{{ $chart->name }}</td>
+                                    @else
+                                        <td class="chart_{{ $chart->id }}">{{ $chart->name }}</td>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </tr>
+                
+                @endif
             @endforeach
         </table>
     </div>
