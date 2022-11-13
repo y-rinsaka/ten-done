@@ -269,7 +269,8 @@
             @endif
         @endforeach
     </div>
-    <hr/>
-    <a href="/charts/register_chart">譜面を新規登録する</a>
-
+    @if (Auth::user()->taiko_id === "324498836508")
+        <hr/>
+        <a href="/charts/register_chart">譜面を新規登録する（管理者専用）</a>
+    @endif
 @endsection
