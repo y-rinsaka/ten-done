@@ -22,4 +22,8 @@ class Chart extends Model
     public function posts(){
         return $this->hasMany('App\Post');
     }
+    public function getUpdated(){
+        $chart_updated = \App\Chart::latest('updated_at')->pluck('updated_at')->first();
+        return $chart_updated;
+    }
 }
