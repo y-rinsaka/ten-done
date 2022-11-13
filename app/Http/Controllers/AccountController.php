@@ -21,7 +21,7 @@ class AccountController extends Controller
         
         $account = Auth::user();
         $myposts = \App\Post::all()->where('user_id', Auth::user()->id)->pluck('chart_id')->toArray();
-        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(3)->get();
+        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(5)->get();
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($account->id);
         $is_followed = $login_user->isFollowed($account->id);
@@ -29,6 +29,8 @@ class AccountController extends Controller
         $follower_count = $follower->getFollowerCount($account->id);
         $achieved_count = $post->getAchievedCount($account->id);
         $chart_count = $chart->count();
+        $achieved_per = round(100 * ($achieved_count / $chart_count), 2);
+        $chart_updated = \App\Chart::latest('updated_at')->pluck('updated_at')->first();
         return view('account.index')->with(['charts' => $chart->get(),
                                             'difficulties' => $difficulty->get(),
                                             'genres' => $genre->get(),
@@ -40,7 +42,9 @@ class AccountController extends Controller
                                             'follow_count' => $follow_count,
                                             'follower_count' => $follower_count,
                                             'achieved_count' => $achieved_count,
-                                            'chart_count' => $chart_count
+                                            'chart_count' => $chart_count,
+                                            'achieved_per' => $achieved_per,
+                                            'chart_updated' => $chart_updated
                                             ]);;
     }
     public function edit($id)
@@ -162,7 +166,7 @@ class AccountController extends Controller
     public function showAccountPage($id, Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower, Post $post){
         $account = Account::find($id);
         $account_posts = \App\Post::all()->where('user_id', $id)->pluck('chart_id')->toArray();
-        $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(3)->get();
+        $news = \App\Post::where('user_id', $id)->orderBy('created_at', 'desc')->take(5)->get();
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($account->id);
         $is_followed = $login_user->isFollowed($account->id);
@@ -170,7 +174,8 @@ class AccountController extends Controller
         $follower_count = $follower->getFollowerCount($account->id);
         $achieved_count = $post->getAchievedCount($account->id);
         $chart_count = $chart->count();
-        
+        $achieved_per = round(100 * ($achieved_count / $chart_count), 2);
+        $chart_updated = \App\Chart::latest('updated_at')->pluck('updated_at')->first();
         return view('account.showAccountPage')
                 ->with(['charts' => $chart->get(),
                         'difficulties' => $difficulty->get(),
@@ -183,7 +188,9 @@ class AccountController extends Controller
                         'follow_count'   => $follow_count,
                         'follower_count' => $follower_count,
                         'achieved_count' => $achieved_count,
-                        'chart_count' => $chart_count
+                        'chart_count' => $chart_count,
+                        'achieved_per' => $achieved_per,
+                        'chart_updated' => $chart_updated
                         ]);
     }
     public function follow(Account $account)
@@ -219,5 +226,30 @@ class AccountController extends Controller
         return view('account.showFollowAndFollower')->with(['follow_accounts'=>$follow_accounts,
                                                             'follower_accounts'=>$follower_accounts
                                                             ]);
+    }
+    public function test(Chart $chart, Difficulty $difficulty, Genre $genre, Follower $follower, Post $post){
+        $account = Auth::user();
+        $myposts = \App\Post::all()->where('user_id', Auth::user()->id)->pluck('chart_id')->toArray();
+        $news = \App\Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(5)->get();
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($account->id);
+        $is_followed = $login_user->isFollowed($account->id);
+        $follow_count = $follower->getFollowCount($account->id);
+        $follower_count = $follower->getFollowerCount($account->id);
+        $achieved_count = $post->getAchievedCount($account->id);
+        $chart_count = $chart->count();
+        return view('account.test')->with(['charts' => $chart->get(),
+                                            'difficulties' => $difficulty->get(),
+                                            'genres' => $genre->get(),
+                                            'news' => $news,
+                                            'account' => $account,
+                                            'is_following'   => $is_following,
+                                            'is_followed'    => $is_followed,
+                                            'myposts' => $myposts,
+                                            'follow_count' => $follow_count,
+                                            'follower_count' => $follower_count,
+                                            'achieved_count' => $achieved_count,
+                                            'chart_count' => $chart_count
+                                            ]);;
     }
 }

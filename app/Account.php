@@ -93,6 +93,8 @@ class Account extends Authenticatable
         'password.required' => 'パスワードを入力してください。',
         'password.min' => 'パスワードは8文字以上で入力してください。',
         'password.confirmed' => '入力されたパスワードが一致しません。',
+        'email.email' => 'メールアドレスを正しく入力してください。',
+        'email.unique' => 'そのメールアドレスはすでに使用されています。',
         'pref_id.required' => '都道府県を選択してください。',
         'rank_id.required' => '段位を選択してください。',
         

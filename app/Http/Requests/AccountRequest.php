@@ -36,11 +36,14 @@ class AccountRequest extends FormRequest
             unset($rules['password'][$key]);
             array_push($rules['password'], 'nullable');
 
-            // updateのときに、元のemailと同じ値であってもバリデーションエラーにならないようにする
+            // updateのときに、元のtaiko_id, emailと同じ値であってもバリデーションエラーにならないようにする
             // https://readouble.com/laravel/6.x/ja/validation.html#rule-unique
             $key = array_search('unique:accounts', $rules['taiko_id']);
             unset($rules['taiko_id'][$key]);
             array_push($rules['taiko_id'], Rule::unique('accounts')->ignore(Auth::user()));
+            $key = array_search('unique:accounts', $rules['email']);
+            unset($rules['email'][$key]);
+            array_push($rules['email'], Rule::unique('accounts')->ignore(Auth::user()));
         }
         return $rules;
     }

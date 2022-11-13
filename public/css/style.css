@@ -1,4 +1,6 @@
 #charts_table {
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     table-layout: fixed;
     word-wrap: break-word;
@@ -9,10 +11,17 @@
 #charts_table th {
 
     width: 10%;
-    font-size: 10px;
+    font-size: 15px;
     color: white;
     text-align: center;
     background-color: darkslategray;
+}
+#charts_table td {
+    width: 120px;
+    font-size: 10px;
+}
+.font-size-200per {
+	font-size: 300%;
 }
 .rs1 {
 	
@@ -27,15 +36,16 @@
 .rs4 {
 	height: 40%;
 }
-#charts_table td {
-    width: 100px;
-    font-size: 10px;
+.achievement {
+	background-color: burlywood;
+	color: white;
 }
-#profile_table td, th{
-    padding: 10px;
-    font-size: 15px;
+.achievement_sum {
+	font-size: 400%;
 }
-
+.achievement_per {
+	font-size: 200%;
+}
 .margin-auto {
     margin: auto;
 }
@@ -45,13 +55,15 @@
 .profile_table {
     text-align: center;
 }
-.profile_posts {
-    display: flex;
-    align-items: stretch;
-}
-.profile_posts>div{
-    width:50%;
-    padding: 10px;
+.width_half{
+  display:flex;/*コレ*/
+  width:100%;
+  margin:0;
+} 
+.width_half>div{
+  width:50%;
+  margin:0 1%;
+  background:#FFF;
 }
 .content_charts {
     padding: 10px;
@@ -60,8 +72,9 @@
     padding: 30px 100px;
 }
 .mydon_image {
-    width: 140px;
-	height: 140px;	
+	width: 80%;
+	border-radius:50%;
+	max-width: 160px;
 }
 .mydon_image_at_search {
     width: 140px;
